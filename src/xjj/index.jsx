@@ -26,7 +26,15 @@ class XiaoJieJie extends Component {
         <ul>
           {
             this.state.list.map((item, index) => {
-              return <li key={index + item}>{item}</li>
+              return (
+                <li
+                  key={index + item}
+                  style={{ margin: '10px 0' }}
+                >
+                  {item}
+                  <button style={{ marginLeft: '10px' }} onClick={this.delService.bind(this, index)}>删除</button>
+                </li>
+              )
             })
           }
         </ul>
@@ -46,6 +54,17 @@ class XiaoJieJie extends Component {
   addService () {
     this.setState({
       list: [...this.state.list, this.state.inputValue]
+    })
+  }
+
+  // 删除服务
+  delService (index) {
+    // console.log(index)
+    let list = [...this.state.list];
+    // 删除元素
+    list.splice(index, 1);
+    this.setState({
+      list
     })
   }
 }
